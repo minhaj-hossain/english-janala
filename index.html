@@ -27,14 +27,67 @@
         rel="stylesheet">
 
 
-        <!-- external  css-->
-         <link rel="stylesheet" href="./style/style.css">
+    <!-- external  css-->
+    <link rel="stylesheet" href="./style/style.css">
 
 </head>
 
 <body>
 
-    <h1>English Janala</h1>
+    <header>
+        <div class="navbar bg-[rgba(186,222,255,0.26)] shadow-sm py-7 px-5">
+
+            <div class="navbar-start">
+                <div class="dropdown">
+                    <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h8m-8 6h16" />
+                        </svg>
+                    </div>
+                    <ul tabindex="-1"
+                        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-2 w-52 p-2 shadow space-y-4">
+                    <a class=""> <i class="fa-solid fa-circle-question"></i>Button</a>
+                    
+                    <a class=""> <i class="fa-brands fa-leanpub"></i>Learn</a>
+                    
+                    <a class=""><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+                    </ul>
+                </div>
+                <a class="btn btn-ghost text-xl"><span class="font-bold">English</span><img src="./assets/logo.png"
+                        alt=""><span class="font-semibold siliguri">জানালা</span></a>
+            </div>
+            <div class="navbar-end space-x-4  hidden md:flex">
+                <a class="btn btn-outline btn-primary"> <i class="fa-solid fa-circle-question"></i>Button</a>
+
+                <a class="btn btn-outline btn-primary"> <i class="fa-brands fa-leanpub"></i>Learn</a>
+                
+                <a class="btn btn-outline btn-primary"> <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="flex items-center flex-col-reverse md:flex-row w-11/12 mx-auto ">
+        <div class="content space-y-6 text-center md:text-left flex-1 ">
+            <h2 class="font-bold text-5xl"><span class="text-[#00bcff]">English</span> is Easy!!</h2>
+            <p class="siliguri font-medium text-2xl text-[#181818] opacity-[0.8]">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons
+            আপনাকে নিয়ে যাবে অন্য একটি Level এ</p>
+            
+                <fieldset class="w-xs space-y-5 mx-auto md:mx-0">
+                
+                    <input type="text" class="input" placeholder="Enter Your Name" />
+                
+                    <input type="password" class="input" placeholder="Password" />
+                
+                    <button class="btn btn-primary  ">Get Started</button>
+                </fieldset>
+            
+        </div>
+        <div class="img flex-1">
+            <img src="./assets/hero-student.png" alt="">
+        </div>
+    </section>
 
     <script src="./script/script.js"></script>
 </body>
