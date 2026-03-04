@@ -1,3 +1,16 @@
+const synonymBtn = (arr) => {
+    const synonymBtn = arr.map(btn => ` <button class="btn btn-outline btn-primary text-2xl opacity-[0.8]">${btn}</button>`)
+
+
+    return synonymBtn.join(' ');
+}
+
+function pronounceWord(word) {
+    const utterance = new SpeechSynthesisUtterance(word);
+    utterance.lang = "en-EN"; // English
+    window.speechSynthesis.speak(utterance);
+}
+
 const loadData = () => {
     const url = 'https://openapi.programming-hero.com/api/levels/all';
 
@@ -8,6 +21,14 @@ const loadData = () => {
 
 loadData();
 
+const removeActive = () => {
+    const allBtn = document.querySelectorAll('.lesson-btn-all');
+
+    allBtn.forEach(btn => {
+        btn.classList.remove('active');
+    })
+}
+
 const cardLoad = (id) => {
     const url = `https://openapi.programming-hero.com/api/level/${id}`
 
@@ -15,14 +36,10 @@ const cardLoad = (id) => {
         .then(res => res.json())
         .then(data => {
 
-            const allBtn = document.querySelectorAll('.lesson-btn-all');
+
             const activeBtn = document.querySelector(`#lesson-${id}`);
 
-            allBtn.forEach(btn => {
-                btn.classList.remove('active');
-
-            })
-
+            removeActive();
             activeBtn.classList.add('active');
 
             displayCard(data.data)
@@ -40,32 +57,37 @@ const loadWordDetails = async (id) => {
 }
 
 
+
+
 displayWordDetails = (data) => {
 
+    console.log(data);
+
     const modalContainer = document.getElementById('modal-container');
-    modalContainer.innerHTML = ` <div class="font-semibold text-4xl">
-                        <h3 class="siliguri">Eager <i class="fa-solid fa-microphone-lines"></i> ইগার</h3>
+    modalContainer.innerHTML = ` 
+    
+                    <div class="font-semibold text-4xl">
+                        <h3  class="siliguri">${data.word} <i onclick="pronounceWord('${data.word}')" class="fa-solid fa-microphone-lines"></i> ${data.pronunciation ? data.pronunciation : 'Pronunciation not available'}</h3>
 
                     </div>
 
 
                     <div class="text-2xl">
                         <h5 class="font-semibold">Meaning</h5>
-                        <p class="siliguri font-medium">আগ্রহী</p>
+                        <p class="siliguri font-medium">${data.meaning ? data.meaning : 'Meaning not available'}</p>
                     </div>
 
                     <div class="text-2xl">
                         <h5 class="font-semibold">Example</h5>
-                        <p class="opacity-[0.8]">The kids were eager to open their gifts.</p>
+                        <p class="opacity-[0.8]">${data.sentence ? data.sentence : 'Example not available'}</p>
                     </div>
 
                     <div>
                         <h5 class="font-medium text-2xl siliguri">সমার্থক শব্দ গুলো</h5>
 
                         <div >
-                            <button class="btn btn-outline btn-primary text-2xl opacity-[0.8]">Enthusiastic</button>
-                            <button class="btn btn-outline btn-primary text-2xl opacity-[0.8]">Excited</button>
-                            <button class="btn btn-outline btn-primary text-2xl opacity-[0.8]">Keen</button>
+
+                            ${synonymBtn(data.synonyms)}
 
                         </div>
 
@@ -117,7 +139,7 @@ const displayCard = (data) => {
                     <i class="fa-solid fa-circle-info"></i>
                 </div>
 
-                <div class="w-10 h-10 bg-[rgba(26,145,255,0.1)] hover:bg-[rgba(26,145,255,0.5)] rounded-xl flex items-center justify-center">
+                <div onclick="pronounceWord('${card.word}')" class="w-10 h-10 bg-[rgba(26,145,255,0.1)] hover:bg-[rgba(26,145,255,0.5)] rounded-xl flex items-center justify-center">
                     <i class="fa-solid fa-volume-high"></i>
                 </div>
             </div>
