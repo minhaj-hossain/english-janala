@@ -1,20 +1,20 @@
 const loadData = () => {
     const url = 'https://openapi.programming-hero.com/api/levels/all';
 
-    fetch(url) 
+    fetch(url)
         .then(res => res.json())
         .then(data => displayData(data.data));
 }
 
 loadData();
 
-const cardLoad= (id) => {
+const cardLoad = (id) => {
     const url = `https://openapi.programming-hero.com/api/level/${id}`
 
     fetch(url)
         .then(res => res.json())
         .then(data => {
-            
+
             const allBtn = document.querySelectorAll('.lesson-btn-all');
             const activeBtn = document.querySelector(`#lesson-${id}`);
 
@@ -25,16 +25,66 @@ const cardLoad= (id) => {
 
             activeBtn.classList.add('active');
 
-            displayCard(data.data)})
+            displayCard(data.data)
+        })
+}
+
+const loadWordDetails = async (id) => {
+    const url = `https://openapi.programming-hero.com/api/word/${id}`;
+
+    const res = await fetch(url);
+    const data = await res.json();
+
+    displayWordDetails(data.data);
+
+}
+
+
+displayWordDetails = (data) => {
+
+    const modalContainer = document.getElementById('modal-container');
+    modalContainer.innerHTML = ` <div class="font-semibold text-4xl">
+                        <h3 class="siliguri">Eager <i class="fa-solid fa-microphone-lines"></i> ইগার</h3>
+
+                    </div>
+
+
+                    <div class="text-2xl">
+                        <h5 class="font-semibold">Meaning</h5>
+                        <p class="siliguri font-medium">আগ্রহী</p>
+                    </div>
+
+                    <div class="text-2xl">
+                        <h5 class="font-semibold">Example</h5>
+                        <p class="opacity-[0.8]">The kids were eager to open their gifts.</p>
+                    </div>
+
+                    <div>
+                        <h5 class="font-medium text-2xl siliguri">সমার্থক শব্দ গুলো</h5>
+
+                        <div >
+                            <button class="btn btn-outline btn-primary text-2xl opacity-[0.8]">Enthusiastic</button>
+                            <button class="btn btn-outline btn-primary text-2xl opacity-[0.8]">Excited</button>
+                            <button class="btn btn-outline btn-primary text-2xl opacity-[0.8]">Keen</button>
+
+                        </div>
+
+                        <button class="btn btn-primary mt-8">Complete Learning</button>
+     
+
+                    </div>`
+
+
+    document.getElementById('word_modal').showModal();
+
 }
 
 const displayCard = (data) => {
-    
-    
+
     const cardsContainer = document.querySelector('.cards-container');
     cardsContainer.innerHTML = '';
 
-    if(data.length === 0){
+    if (data.length === 0) {
         cardsContainer.innerHTML = `
         <div class=" col-span-3 flex items-center justify-center flex-col space-y-4 p-10 rounded-2xl">
 
@@ -47,23 +97,23 @@ const displayCard = (data) => {
         `
         return;
     }
-    
 
-    
+
+
     data.forEach(card => {
-        
-        
+
+
         const div = document.createElement('div');
         div.innerHTML = `
         <div class="card bg-white shadow-sm rounded-xl p-14 text-center flex flex-col justify-between space-y-5 h-full">
             <div class="space-y-6 mb-14">
-                        <h3 class="font-bold text-[32px]">${card.word?card.word:'শব্দ পাওয়া যায়নি'}</h3>
+                        <h3 class="font-bold text-[32px]">${card.word ? card.word : 'শব্দ পাওয়া যায়নি'}</h3>
                 <p class="font-medium text-5">Meaning /Pronounciation</p>
-                 <div class="siliguri font-semibold text-[32px] text-[#18181b] opacity-[0.8]">"${card.meaning ? card.meaning :'অর্থ পাওয়া যায়নি'}" / ${card.pronunciation?card.pronunciation:'উচ্চারণ পাওয়া যায়নি'}</div>
+                 <div class="siliguri font-semibold text-[32px] text-[#18181b] opacity-[0.8]">"${card.meaning ? card.meaning : 'অর্থ পাওয়া যায়নি'}" / ${card.pronunciation ? card.pronunciation : 'উচ্চারণ পাওয়া যায়নি'}</div>
 
             </div>
             <div class="flex justify-between">
-                <div class="w-10 h-10 bg-[rgba(26,145,255,0.1)] hover:bg-[rgba(26,145,255,0.5)] rounded-xl flex items-center justify-center">
+                <div onclick="loadWordDetails('${card.id}')" class="w-10 h-10 bg-[rgba(26,145,255,0.1)] hover:bg-[rgba(26,145,255,0.5)] rounded-xl flex items-center justify-center">
                     <i class="fa-solid fa-circle-info"></i>
                 </div>
 

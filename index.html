@@ -48,11 +48,11 @@
                     </div>
                     <ul tabindex="-1"
                         class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-2 w-52 p-2 shadow space-y-4">
-                    <a class=""> <i class="fa-solid fa-circle-question"></i>Button</a>
-                    
-                    <a class=""> <i class="fa-brands fa-leanpub"></i>Learn</a>
-                    
-                    <a class=""><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+                        <a class=""> <i class="fa-solid fa-circle-question"></i>Button</a>
+
+                        <a class=""> <i class="fa-brands fa-leanpub"></i>Learn</a>
+
+                        <a class=""><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
                     </ul>
                 </div>
                 <a class="btn btn-ghost text-xl"><span class="font-bold">English</span><img src="./assets/logo.png"
@@ -62,7 +62,7 @@
                 <a class="btn btn-outline btn-primary"> <i class="fa-solid fa-circle-question"></i>Button</a>
 
                 <a class="btn btn-outline btn-primary"> <i class="fa-brands fa-leanpub"></i>Learn</a>
-                
+
                 <a class="btn btn-outline btn-primary"> <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
             </div>
         </div>
@@ -72,44 +72,67 @@
     <section class="flex items-center flex-col-reverse md:flex-row w-11/12 mx-auto ">
         <div class="content space-y-6 text-center md:text-left flex-1 ">
             <h2 class="font-bold text-5xl"><span class="text-[#00bcff]">English</span> is Easy!!</h2>
-            <p class="siliguri font-medium text-2xl text-[#181818] opacity-[0.8]">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons
-            আপনাকে নিয়ে যাবে অন্য একটি Level এ</p>
-            
-                <fieldset class="w-xs space-y-5 mx-auto md:mx-0">
-                
-                    <input type="text" class="input" placeholder="Enter Your Name" />
-                
-                    <input type="password" class="input" placeholder="Password" />
-                
-                    <button class="btn btn-primary  ">Get Started</button>
-                </fieldset>
-            
+            <p class="siliguri font-medium text-2xl text-[#181818] opacity-[0.8]">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু
+                করুন। আপনি যদি নতুন হন অথবা আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons
+                আপনাকে নিয়ে যাবে অন্য একটি Level এ</p>
+
+            <fieldset class="w-xs space-y-5 mx-auto md:mx-0">
+
+                <input type="text" class="input" placeholder="Enter Your Name" />
+
+                <input type="password" class="input" placeholder="Password" />
+
+                <button class="btn btn-primary  ">Get Started</button>
+            </fieldset>
+
         </div>
         <div class="img flex-1">
             <img src="./assets/hero-student.png" alt="">
         </div>
     </section>
 
-
-    <section  class="text-center flex flex-col  w-11/12 mx-auto space-y-12 ">
+    <!-- learn vocabularies btn -->
+    <section class="text-center flex flex-col  w-11/12 mx-auto space-y-12 ">
         <h2 class="font-bold text-4xl"><span class="text-[#00bcff]">Let's</span> Learn Vocabularies</h2>
 
         <div class="btnContainer flex flex-wrap justify-center gap-10"></div>
 
     </section>
 
+    <!-- learn vocabularies cards container -->
+    <section
+        class="cards-container bg-base-200 p-[30px] w-11/12 mx-auto rounded-3xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px] ">
 
-        <section class="cards-container bg-base-200 p-[30px] w-11/12 mx-auto rounded-3xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px] ">
-            
-            <div class=" col-span-3 flex items-center justify-center flex-col space-y-4 p-10 rounded-2xl">
-            
-                <p class="siliguri text-[13px] text-[#79716b]">আপনি এখনো কোন Lesson Select করেন ন</p>
-                <h3 class="siliguri font-medium text-[34px]">একটি Lesson Select করুন।</h3>
-            
+        <div class=" col-span-3 flex items-center justify-center flex-col space-y-4 p-10 rounded-2xl">
+
+            <p class="siliguri text-[13px] text-[#79716b]">আপনি এখনো কোন Lesson Select করেন ন</p>
+            <h3 class="siliguri font-medium text-[34px]">একটি Lesson Select করুন।</h3>
+
+        </div>
+
+    </section>
+
+    <section>
+        <!-- Open the modal using ID.showModal() method -->
+        <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+        <dialog id="word_modal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <div id="modal-container" class="space-y-8">
+
+                   
+
+
+
+                </div>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button class="btn">Close</button>
+                    </form>
+                </div>
             </div>
-            
-        </section>
-        
+        </dialog>
+    </section>
 
     <script src="./script/script.js"></script>
 </body>
