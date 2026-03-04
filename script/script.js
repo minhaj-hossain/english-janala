@@ -6,6 +6,8 @@ const loadData = () => {
         .then(data => displayData(data.data));
 }
 
+loadData();
+
 const cardLoad= (id) => {
     const url = `https://openapi.programming-hero.com/api/level/${id}`
 
@@ -16,21 +18,36 @@ const cardLoad= (id) => {
 
 const displayCard = (data) => {
     
-    // console.log(data);
-
+    
     const cardsContainer = document.querySelector('.cards-container');
     cardsContainer.innerHTML = '';
 
-    data.forEach(card => {
+    if(data.length === 0){
+        cardsContainer.innerHTML = `
+        <div class=" col-span-3 flex items-center justify-center flex-col space-y-4 p-10 rounded-2xl">
 
-        console.log(Object.keys(card).length);
+                <img src="./assets/alert-error.png" alt="not found">
+                <p  class="siliguri text-[13px] text-[#79716b]">এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</p>
+                <h3 class="siliguri font-medium text-[34px]">নেক্সট Lesson এ যান</h3>
+
+        </div>
+        
+        `
+        return;
+    }
+    
+
+    
+    data.forEach(card => {
+        
+        
         const div = document.createElement('div');
         div.innerHTML = `
         <div class="card bg-white shadow-sm rounded-xl p-14 text-center flex flex-col justify-between space-y-5 h-full">
             <div class="space-y-6 mb-14">
-                        <h3 class="font-bold text-[32px]">${card.word}</h3>
+                        <h3 class="font-bold text-[32px]">${card.word?card.word:'শব্দ পাওয়া যায়নি'}</h3>
                 <p class="font-medium text-5">Meaning /Pronounciation</p>
-                <div class="siliguri font-semibold text-[32px] text-[#18181b] opacity-[0.8]">"${card.meaning}" / ${card.pronunciation}"</div>
+                 <div class="siliguri font-semibold text-[32px] text-[#18181b] opacity-[0.8]">"${card.meaning ? card.meaning :'অর্থ পাওয়া যায়নি'}" / ${card.pronunciation?card.pronunciation:'উচ্চারণ পাওয়া যায়নি'}</div>
 
             </div>
             <div class="flex justify-between">
@@ -70,5 +87,3 @@ const displayData = (lessons) => {
     })
 
 }
-
-loadData();
