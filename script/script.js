@@ -13,7 +13,19 @@ const cardLoad= (id) => {
 
     fetch(url)
         .then(res => res.json())
-        .then(data => displayCard(data.data))
+        .then(data => {
+            
+            const allBtn = document.querySelectorAll('.lesson-btn-all');
+            const activeBtn = document.querySelector(`#lesson-${id}`);
+
+            allBtn.forEach(btn => {
+                btn.classList.remove('active');
+
+            })
+
+            activeBtn.classList.add('active');
+
+            displayCard(data.data)})
 }
 
 const displayCard = (data) => {
@@ -80,7 +92,7 @@ const displayData = (lessons) => {
         const div = document.createElement('div');
 
         div.innerHTML = `
-        <button onclick="cardLoad(${lesson.level_no})" class="btn btn-outline btn-primary"> <i class="fa-brands fa-leanpub"></i>Lesson - ${lesson.level_no}</button>
+        <button id="lesson-${lesson.level_no}" onclick="cardLoad(${lesson.level_no})" class="btn btn-outline btn-primary lesson-btn-all"> <i class="fa-brands fa-leanpub"></i>Lesson - ${lesson.level_no}</button>
         `
 
         btnContainer.appendChild(div);
